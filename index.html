@@ -1,93 +1,39 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>HI Window Spammer</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0; min-height: 100vh; display: grid; place-items: center;
-      font-family: system-ui, sans-serif; color: #f7f7fb;
-      background: radial-gradient(circle at top, #252b55, #10121f 65%);
-    }
-    main {
-      width: min(92vw, 520px); padding: 38px; text-align: center;
-      background: #1b1e30; border: 1px solid #373c5b; border-radius: 22px;
-      box-shadow: 0 22px 70px #0007;
-    }
-    h1 { margin: 0 0 10px; font-size: 2.4rem; }
-    p { color: #b9bfd8; line-height: 1.5; }
-    .controls { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 26px 0 16px; }
-    button {
-      border: 0; border-radius: 12px; padding: 12px 18px; cursor: pointer;
-      font: inherit; font-weight: 700; color: white; background: #5865d9;
-    }
-    button:hover { filter: brightness(1.12); }
-    button:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
-    button.secondary { background: #373c55; }
-    button.danger { background: #a43c58; }
-    #status { min-height: 24px; font-size: .92rem; color: #c9d0ed; }
-    small { display: block; margin-top: 20px; color: #9299b8; }
-  </style>
-</head>
-<body>
-  <main>
-    <h1>HI WINDOW SPAMMER</h1>
-    <p>Open a few separate windows that all say <strong>HI</strong>.</p>
-    <div class="controls" aria-label="Choose how many windows to open">
-      <button data-count="1">Open 1</button>
-      <button data-count="5">Open 5</button>
-      <button data-count="10">Open 10</button>
-      <button data-count="20">Open 20</button>
-    </div>
-    <button class="danger" id="closeAll">Close all windows</button>
-    <p id="status" role="status" aria-live="polite">Choose a number to get started.</p>
-    <small>Pop-ups may need to be allowed by your browser. Nothing opens until you click a button.</small>
-  </main>
-  <script>
-    const openedWindows = [];
-    const status = document.getElementById('status');
-
-    function makeHiPage(win, number) {
-      const doc = win.document;
-      doc.open();
-      doc.write(`<!doctype html><html lang="en"><head><meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>HI #${number}</title>
-        <style>
-          html,body{height:100%;margin:0}
-          body{display:grid;place-items:center;background:#171a2b;color:#fff;
-            font: bold clamp(5rem, 25vw, 12rem) system-ui,sans-serif}
-        </style></head><body>HI</body></html>`);
-      doc.close();
-    }
-
-    document.querySelectorAll('[data-count]').forEach(button => {
-      button.addEventListener('click', () => {
-        const count = Math.min(20, Number(button.dataset.count));
-        let opened = 0;
-        for (let i = 0; i < count; i++) {
-          const win = window.open('', '_blank', 'popup,width=420,height=320,resizable=yes');
-          if (!win) break;
-          openedWindows.push(win);
-          makeHiPage(win, openedWindows.length);
-          opened++;
-        }
-        status.textContent = opened === count
-          ? `Opened ${opened} window${opened === 1 ? '' : 's'}.`
-          : `Opened ${opened} of ${count}. Your browser blocked the rest; allow pop-ups and try again.`;
-      });
-    });
-
-    document.getElementById('closeAll').addEventListener('click', () => {
-      let closed = 0;
-      while (openedWindows.length) {
-        const win = openedWindows.pop();
-        if (win && !win.closed) { win.close(); closed++; }
-      }
-      status.textContent = `Closed ${closed} window${closed === 1 ? '' : 's'}.`;
-    });
-  </script>
-</body>
-</html>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080b16"><title>Infinity AI</title>
+<style>
+:root{color-scheme:dark;--bg:#080b16;--panel:#0e1424;--line:#202b43;--muted:#8793ad;--cyan:#61e7f5;--violet:#9b83ff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 65% -20%,#20285a 0,transparent 42%),var(--bg);color:#eef3ff;font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;height:100vh;overflow:hidden}
+button,textarea{font:inherit}button{cursor:pointer;color:inherit}.app{height:100vh;display:grid;grid-template-columns:280px 1fr}
+.sidebar{background:#090e1bd9;border-right:1px solid var(--line);padding:22px 16px;display:flex;flex-direction:column;gap:18px;backdrop-filter:blur(20px)}
+.brand{display:flex;align-items:center;gap:12px;padding:3px 8px 14px}.logo{width:38px;height:38px;border-radius:13px;background:linear-gradient(135deg,var(--cyan),var(--violet));display:grid;place-items:center;color:#07101d;font-size:22px;font-weight:900;box-shadow:0 0 28px #65e9f544}.brand strong{font-size:18px;letter-spacing:.4px}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:2px;text-transform:uppercase}
+.new{border:1px solid #3a6680;background:linear-gradient(110deg,#17394b,#28244d);padding:12px 14px;border-radius:12px;text-align:left;font-weight:650;box-shadow:0 8px 28px #40d9ed13}.new:hover{border-color:var(--cyan)}
+.section{color:#66748f;text-transform:uppercase;letter-spacing:1.7px;font-size:10px;font-weight:700;padding:6px 9px 0}.chats{overflow:auto;display:flex;flex-direction:column;gap:5px}.chat{display:flex;align-items:center;gap:8px;padding:10px;border-radius:10px;color:#aeb9d0;border:1px solid transparent}.chat:hover,.chat.active{background:#151e31;color:#f1f5ff;border-color:#263651}.chat-title{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;text-align:left;background:none;border:0}.delete{border:0;background:transparent;color:#73809b;padding:3px 6px;border-radius:6px}.delete:hover{background:#3b2233;color:#ff9bb3}.sidebar-bottom{margin-top:auto;display:grid;gap:10px}.clear{border:1px solid #492c42;background:#211523;color:#eaa9c0;padding:10px;border-radius:10px}.privacy{font-size:11px;color:#67748c;text-align:center}
+main{min-width:0;display:flex;flex-direction:column;position:relative}.topbar{height:66px;border-bottom:1px solid #1c263a;display:flex;align-items:center;justify-content:space-between;padding:0 28px;background:#080d19a8;backdrop-filter:blur(16px)}.topbar .model{color:#aebbd4;font-size:12px;display:flex;align-items:center;gap:8px}.dot{width:7px;height:7px;border-radius:50%;background:#63e5b0;box-shadow:0 0 12px #63e5b0}.top-actions{display:flex;gap:8px}.iconbtn{border:1px solid var(--line);background:#111a2b;border-radius:9px;padding:8px 11px;color:#aebbd4}
+.feed{flex:1;overflow:auto;padding:36px 20px 20px}.inner{max-width:850px;margin:0 auto}.welcome{text-align:center;padding:8vh 10px 30px}.orb{width:76px;height:76px;margin:0 auto 22px;border-radius:26px;display:grid;place-items:center;font-size:38px;color:#08101c;background:linear-gradient(135deg,#66eaf1,#9c85ff);box-shadow:0 0 60px #5bdff344, inset 0 0 18px #fff8}.welcome h1{font-size:clamp(30px,5vw,46px);letter-spacing:-1.8px;margin:0 0 10px}.gradient{background:linear-gradient(90deg,#74eff4,#a797ff);background-clip:text;color:transparent}.welcome p{color:#8f9bb5;margin:0 auto 28px;max-width:470px}.suggestions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;max-width:620px;margin:auto}.suggest{border:1px solid #26344d;background:#10192a;padding:13px 15px;border-radius:12px;text-align:left;color:#c7d2e9}.suggest:hover{border-color:#5bafc2;background:#142337}.messages{display:flex;flex-direction:column;gap:22px;padding-bottom:25px}.message{display:flex;gap:12px;max-width:100%}.avatar{flex:0 0 32px;height:32px;border-radius:11px;display:grid;place-items:center;background:#15243a;color:var(--cyan);font-weight:800}.message.user .avatar{background:#30264f;color:#c2b2ff}.bubble{min-width:0;max-width: min(740px,calc(100% - 44px));padding:12px 16px;border:1px solid #202d44;background:#101827;border-radius:4px 15px 15px 15px;color:#e1e8f6;white-space:pre-wrap;overflow-wrap:anywhere}.message.user .bubble{background:#171a30;border-color:#38365d;border-radius:15px 4px 15px 15px}.meta{font-size:10px;color:#75839d;margin:0 0 5px 2px}.typing{color:#94a4bd;font-size:13px;padding:10px 0}.composer-wrap{padding:12px 20px 22px;background:linear-gradient(transparent,#080b16 28%)}.composer{max-width:850px;margin:auto;border:1px solid #2a3b56;background:#101929;border-radius:17px;padding:10px;box-shadow:0 12px 45px #0006,0 0 24px #5addeb0b}.composer:focus-within{border-color:#4c9bad;box-shadow:0 0 0 3px #5de4f414}.composer textarea{width:100%;resize:none;max-height:160px;min-height:48px;background:transparent;border:0;outline:0;color:#eef3ff;padding:8px 9px}.composer textarea::placeholder{color:#687792}.compose-foot{display:flex;align-items:center;justify-content:space-between;padding:0 4px 2px 9px;color:#687792;font-size:11px}.send{border:0;border-radius:10px;background:linear-gradient(110deg,#5edeea,#9d87ff);color:#07101b;font-weight:800;padding:9px 16px}.send:disabled{opacity:.4;cursor:not-allowed}.notice{max-width:850px;margin:0 auto 8px;color:#7786a0;font-size:10px;text-align:center}
+.mobile-new{display:none}
+@media(max-width:720px){.app{grid-template-columns:1fr}.sidebar{position:fixed;z-index:5;inset:0 auto 0 0;width:280px;transform:translateX(-102%);transition:transform .22s;box-shadow:15px 0 50px #0008}.sidebar.open{transform:translateX(0)}.mobile-new{display:inline-block}.topbar{padding:0 14px}.feed{padding:22px 13px}.welcome{padding-top:7vh}.suggestions{grid-template-columns:1fr}.composer-wrap{padding:10px 12px 16px}.topbar .model{font-size:11px}}
+</style></head>
+<body><div class="app">
+<aside class="sidebar" id="sidebar"><div class="brand"><div class="logo">∞</div><div><strong>Infinity AI</strong><small>Think beyond limits</small></div></div>
+<button class="new" id="newChat">＋ &nbsp; New chat</button><div class="section">Your conversations</div><div class="chats" id="chatList"></div>
+<div class="sidebar-bottom"><button class="clear" id="clearChats">⌫ &nbsp; Clear all chats</button><div class="privacy">No account · Chats stay in this browser</div></div></aside>
+<main><header class="topbar"><div style="display:flex;align-items:center;gap:12px"><button class="iconbtn mobile-new" id="menuBtn" aria-label="Open chats">☰</button><div class="model"><span class="dot"></span> Infinity Engine <span style="color:#66748c">/</span> Ready</div></div><div class="top-actions"><button class="iconbtn" id="headerNew">＋ New chat</button></div></header>
+<section class="feed" id="feed"><div class="inner" id="content"></div></section>
+<div class="composer-wrap"><div class="notice" id="notice">Your conversations are saved locally on this device.</div><div class="composer"><textarea id="prompt" rows="1" placeholder="Message Infinity AI..." aria-label="Message Infinity AI"></textarea><div class="compose-foot"><span>Enter to send · Shift + Enter for a new line</span><button class="send" id="send">Send ↗</button></div></div></div></main></div>
+<script>
+const KEY='infinity-ai-chats-v1';let chats=[];let activeId=null;let busy=false;
+const $=id=>document.getElementById(id);
+function load(){try{chats=JSON.parse(localStorage.getItem(KEY)||'[]')}catch{chats=[]}if(!Array.isArray(chats))chats=[];activeId=chats[0]?.id||null;render()}
+function save(){localStorage.setItem(KEY,JSON.stringify(chats))}
+function current(){return chats.find(c=>c.id===activeId)}
+function createChat(){const c={id:crypto.randomUUID(),title:'New conversation',messages:[],updated:Date.now()};chats.unshift(c);activeId=c.id;save();render();$('prompt').focus();$('sidebar').classList.remove('open')}
+function removeChat(id){chats=chats.filter(c=>c.id!==id);if(activeId===id)activeId=chats[0]?.id||null;save();render()}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function render(){const list=$('chatList');list.innerHTML='';chats.forEach(c=>{const row=document.createElement('div');row.className='chat'+(c.id===activeId?' active':'');const b=document.createElement('button');b.className='chat-title';b.textContent=c.title;b.onclick=()=>{activeId=c.id;render();$('sidebar').classList.remove('open')};const d=document.createElement('button');d.className='delete';d.textContent='×';d.title='Delete conversation';d.onclick=()=>removeChat(c.id);row.append(b,d);list.append(row)});const c=current();const area=$('content');if(!c||!c.messages.length){area.innerHTML='<div class="welcome"><div class="orb">∞</div><h1>Meet <span class="gradient">Infinity AI</span></h1><p>Your space to explore ideas, solve problems, and create something extraordinary.</p><div class="suggestions"><button class="suggest">✧ &nbsp; Explain a complex topic simply</button><button class="suggest">⌘ &nbsp; Help me brainstorm a project</button><button class="suggest">⚡ &nbsp; Write or improve some code</button><button class="suggest">◎ &nbsp; Make a plan for learning something</button></div></div>';area.querySelectorAll('.suggest').forEach(b=>b.onclick=()=>{$('prompt').value=b.textContent.replace(/^.{1,3}\s+/,'');$('prompt').focus()})}else{area.innerHTML='<div class="messages">'+c.messages.map(m=>'<div class="message '+(m.role==='user'?'user':'assistant')+'"><div class="avatar">'+(m.role==='user'?'Y':'∞')+'</div><div><div class="meta">'+(m.role==='user'?'You':'Infinity AI')+'</div><div class="bubble">'+escapeHtml(m.content)+'</div></div></div>').join('')+'</div>'} $('feed').scrollTop=$('feed').scrollHeight}
+async function send(){const input=$('prompt');const text=input.value.trim();if(!text||busy)return;if(!activeId)createChat();const c=current();c.messages.push({role:'user',content:text});if(c.title==='New conversation')c.title=text.slice(0, thirty=34)+(text.length>34?'…':'');c.updated=Date.now();input.value='';input.style.height='auto';busy=true;$('send').disabled=true;save();render();const typing=document.createElement('div');typing.className='typing';typing.textContent='∞  Infinity AI is thinking…';$('content').append(typing);$('feed').scrollTop=$('feed').scrollHeight;
+try{const response=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:c.messages.map(m=>({role:m.role,content:m.content}))})});const data=await response.json();if(!response.ok)throw new Error(data.error||'The AI service could not respond.');c.messages.push({role:'assistant',content:data.reply||'I could not generate a response.'})}catch(e){c.messages.push({role:'assistant',content:'I could not reach the AI service. '+e.message+'\n\nTo enable real AI replies, deploy this app on Vercel and add your NEW Groq key as the server environment variable GROQ_API_KEY. No key belongs in this page.'})}finally{busy=false;$('send').disabled=false;save();render();$('prompt').focus()}}
+$('newChat').onclick=createChat;$('headerNew').onclick=createChat;$('send').onclick=send;$('prompt').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send()}});$('prompt').addEventListener('input',e=>{e.target.style.height='auto';e.target.style.height=Math.min(e.target.scrollHeight,160)+'px'});$('clearChats').onclick=()=>{if(chats.length&&confirm('Delete all conversations? This cannot be undone.')){chats=[];activeId=null;save();render()}};$('menuBtn').onclick=()=>$('sidebar').classList.toggle('open');load();
+</script></body></html>
